@@ -14,10 +14,6 @@ public class Main : MonoBehaviour {
 		//Player player = new Player("Cat", Vector3(312, 2.5, 238.2));
 		//Power changeToBall = new Power("changeToBall");
 
-
-
-
-
 		
 	}
 	
