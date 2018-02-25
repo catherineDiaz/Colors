@@ -25,11 +25,11 @@
 
 
 ## Screenshots
-![alt text](ImagesAndVideos/HW3Video)
-![alt text](ImagesAndVideos/homeland)
-![alt text](ImagesAndVideos/classes)
-![alt text](ImagesAndVideos/power)
-![alt text](ImagesAndVideos/workenv)
+![Rough Homeland Model](/ImagesAndVideos/homeland.png)
+![Current Classes](/ImagesAndVideos/classes.png)
+![The Ball 3D Model Power](/ImagesAndVideos/power.png)
+![Work Environment](/ImagesAndVideos/workenv.png)
+
 
 
 
