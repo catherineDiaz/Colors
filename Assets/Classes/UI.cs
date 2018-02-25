@@ -9,10 +9,29 @@ public class UI : MonoBehaviour {
 	GameObject powerUI;
 	Button useNow;
 	Button useLater;
+	Button quit;
 	Player player;
 	Power ball;
 
 
+	/**
+    	Initializes the UI object
+
+	*/
+	void Start () {
+
+		player = GameObject.Find("Player").GetComponent<Player>();
+		ball = GameObject.Find("ballPower").GetComponent<Power>();
+		quit = GameObject.Find("ExitButton").GetComponent<UnityEngine.UI.Button>();
+		quit.onClick.AddListener(() => OnButtonClicked(quit.name));
+
+	}
+
+	/**
+    	Loads the UI for if a user touched a power, adds listeners to the buttons, adds
+    	power to the power list
+
+	*/
 	public void CollectedPower()
 	{
 		powerUI = Instantiate(Resources.Load("powerUI") as GameObject);
@@ -23,7 +42,13 @@ public class UI : MonoBehaviour {
 		player.addPowerToList(ball);
 
 	}
+		
+	/**
+    	Performs a set of actions depending on which button was pressed
 
+	@param name - name of button that was clicked
+
+	*/
 	void OnButtonClicked(string name)
 	{
 
@@ -43,20 +68,18 @@ public class UI : MonoBehaviour {
 			Destroy(GameObject.Find("ballPower"));
 		}
 
+		if(name == "ExitButton")
+		{
+			Debug.Log(name);
+			Application.Quit();
+		}
 			
 	}
-		
-	void Start () {
-
-		player = GameObject.Find("Player").GetComponent<Player>();
-		ball = GameObject.Find("ballPower").GetComponent<Power>();
 
 
-		
-	}
-	
-	// Update is called once per frame
 	void Update () {
+
+
 		
 	}
 }

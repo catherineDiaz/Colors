@@ -10,17 +10,23 @@ public class Player : Singleton<Player> {
 	List<Power> powerList_;
 	List<Token> tokenList_;
 
+	/**
+    	Initializes Player object which inherits from the Singleton Class making this object a 
+    	singleton
 
-
-    // Use this for initialization
-	void Start(){//public Player (string name, Vector3 position) {
-		name_ = name;
-		//position_ = position;
+	*/
+	void Start(){
+		name_ = this.name;
+		position_ = this.transform.position;
 		powerList_ = new List<Power>();
 		tokenList_ = new List<Token>();
 
 	}
 
+	/**
+    	Adds a power to the list of powers if player collects a power
+
+	*/
 	public void addPowerToList(Power power)
 	{
 
@@ -33,6 +39,10 @@ public class Player : Singleton<Player> {
 		
 	}
 
+	/**
+    	Adds a token to the list of tokens if player collects a token
+
+	*/
 	public void addTokenToList(Token token)
 	{
 
@@ -44,10 +54,19 @@ public class Player : Singleton<Player> {
 
 	}
 		
-	// Update is called once per frame
+	/**
+    	Keeps track of the player position
+
+	*/
+
+
+
+
 	void Update () {
 
 		position_ = this.transform.position;
+
+
 
 
 		

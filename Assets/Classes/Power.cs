@@ -8,14 +8,15 @@ public class Power : MonoBehaviour {
 	GameObject ball;
 	GameObject person;
 	Vector3 position_;
-
 	int once;
 
+	/**
+    	Initializes Power object, the constructor
 
-	//Change to ball
-	void Start()//public Power(string powerName)
+	*/
+	void Start()
 	{
-		//powerName_ = powerName;
+		powerName_ = this.name;
 		bool now = false;
 		once = 0;
 		ball = GameObject.Find("RollerBall");
@@ -26,16 +27,13 @@ public class Power : MonoBehaviour {
 
 	}
 
-	//X-ray Vision
-	/*public Power(string powerName) //list of objects in the environment, material to change to)
-	{
-		powerName_ = powerName;
+	/**
+    	If a power is touched, apply the power to the player
 
-	}*/
-
+	*/
 	public void ApplyPower()
 	{
-		if(gameObject.name == "ballPower")
+		if(gameObject.name == "ballPower") // If the object touched was the ball power
 		{
 			ball.SetActive(true);
 
@@ -44,16 +42,18 @@ public class Power : MonoBehaviour {
 			switchCameraFollow = ball;
 			Debug.Log(switchCameraFollow.name);
 
-
 			person.SetActive(false);
-
-
-
 
 		}
 		
 	}
 
+	/**
+    	Waiting for collision on the power 3D object in the game, if another game object (the Player)
+    	collides with the Power then the UI is initialized and asks the player if they want to use
+    	the power now or later
+
+	*/
 	void OnCollisionEnter (Collision col)
 	{
 		if (gameObject.name == "ballPower" && once == 0) 
@@ -69,8 +69,6 @@ public class Power : MonoBehaviour {
 
 
 
-	
-	// Update is called once per frame
 	void Update () {
 
 
