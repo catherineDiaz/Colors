@@ -25,6 +25,7 @@
 
 
 ## Screenshots
+![Vid of HW3](/ImagesAndVideos/hw3Demo.gif)
 ![Rough Homeland Model](/ImagesAndVideos/homeland.png)
 ![Current Classes](/ImagesAndVideos/classes.png)
 ![The Ball 3D Model Power](/ImagesAndVideos/power.png)
