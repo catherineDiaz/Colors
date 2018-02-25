@@ -6,20 +6,22 @@ public class Power : MonoBehaviour {
 
 	string powerName_;
 	GameObject ball;
+	GameObject person;
 	Vector3 position_;
-	bool now;
 
-
-
+	int once;
 
 
 	//Change to ball
-	public Power(string powerName)
+	void Start()//public Power(string powerName)
 	{
-		powerName_ = powerName;
-		GameObject ballPowerModel = Resources.Load ("ballPowerModel") as GameObject;
-		ball = (GameObject) Instantiate(ballPowerModel, transform.position, transform.rotation);
+		//powerName_ = powerName;
 		bool now = false;
+		once = 0;
+		ball = GameObject.Find("RollerBall");
+		ball.SetActive(false);
+		person = GameObject.Find("ThirdPersonController");
+		person.SetActive(true);
 
 
 	}
@@ -31,36 +33,37 @@ public class Power : MonoBehaviour {
 
 	}*/
 
-	public void ApplyPower(Power power)
+	public void ApplyPower()
 	{
 		if(gameObject.name == "ballPower")
 		{
-			
+			ball.SetActive(true);
+
+			GameObject switchCameraFollow = GameObject.Find("Main Camera").GetComponent<CameraFollow>().player;
+			Debug.Log(switchCameraFollow.name);
+			switchCameraFollow = ball;
+			Debug.Log(switchCameraFollow.name);
+
+
+			person.SetActive(false);
+
+
+
+
 		}
-
-
 		
 	}
 
 	void OnCollisionEnter (Collision col)
 	{
-		if (gameObject.name == "ballPowerModel") 
+		if (gameObject.name == "ballPower" && once == 0) 
 		{
+			once = 1;
 			Debug.Log("Object Touched");
-			//add to powerlist
+			UI powerUI = GameObject.Find("UIController").GetComponent<UI>();
+			powerUI.CollectedPower();
 
-			if (now == true) 
-			{
-				ApplyPower (this);
-			}
-			else// now == false
-			{
-				//show in box in the corner
-			}
-		
-		
 		}
-
 
 	}
 

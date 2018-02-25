@@ -46,9 +46,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Classes\CameraFollow.cs" />
      <Compile Include="Assets\Classes\Main.cs" />
      <Compile Include="Assets\Classes\Player.cs" />
      <Compile Include="Assets\Classes\Power.cs" />
+     <Compile Include="Assets\Classes\Singleton.cs" />
      <Compile Include="Assets\Classes\Token.cs" />
      <Compile Include="Assets\Classes\UI.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
