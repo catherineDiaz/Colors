@@ -9,8 +9,8 @@ public class Singleton<T> : MonoBehaviour where T : Component {
 		get {
 			if (instance == null) {
 				instance = FindObjectOfType<T> ();
-				if (instance == null) {
-					GameObject obj = new GameObject ();
+				if (instance == null) { // if there is no singleton in the scene then make one
+					GameObject obj = new GameObject (); // create gameobject
 					obj.name = typeof(T).Name;
 					instance = obj.AddComponent<T>();
 				}

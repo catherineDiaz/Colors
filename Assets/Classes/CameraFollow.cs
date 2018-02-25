@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
 
-	public GameObject player;       //Public variable to store a reference to the player game object
+	public GameObject player;       
 
-	private Vector3 offset;         //Private variable to store the offset distance between the player and camera
-
+	private Vector3 offset;         //offset distance between the player and camera
 
 
 	public float speedH = 2.0f;
@@ -17,31 +16,29 @@ public class CameraFollow : MonoBehaviour {
 	private float pitch = 0.0f;
 
 
+	/**
+    	Initialize Camera to follow the player where ever it goes
 
-
-
-
-
-	// Use this for initialization
+	*/
 	void Start () 
 	{
-		//Calculate and store the offset value by getting the distance between the player's position and camera's position.
 		offset = transform.position - player.transform.position;
 		offset.y = offset.y + 2;
 	}
 
-	// LateUpdate is called after Update each frame
+
+
+	/**
+    	Update camera location each frame, and use mouse postion to rotate camera 
+
+	*/
 	void LateUpdate () 
 	{
-		// Set the position of the camera's transform to be the same as the player's, but offset by the calculated offset distance.
+		// Set the position of the camera's transform to be the same as the player's, but offset 
 		transform.position = player.transform.position + offset;
 		yaw += speedH * Input.GetAxis("Mouse X");
 		pitch -= speedV * Input.GetAxis("Mouse Y");
-
 		transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-//		Vector3 rotates = transform.LookAt(player.transform);
 
-
-		//transform.rotation = rotates;
 	}
 }
