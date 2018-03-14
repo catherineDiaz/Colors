@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Home.unity
+- path: Assets/PaintUniverse.unity
   isLoaded: 1
   isActive: 1

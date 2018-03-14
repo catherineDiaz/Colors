@@ -59,9 +59,6 @@ public class Player : Singleton<Player> {
 
 	*/
 
-
-
-
 	void Update () {
 
 		position_ = this.transform.position;
