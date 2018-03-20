@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour {
 
 	// Use this for initialization
-	GameObject powerUI;
-	Button useNow;
-	Button useLater;
 	Button quit;
 	Player player;
 	Power ball;
+
+	//For if a user collects a power
+	GameObject powerUI;
+	Button useNow;
+	Button useLater;
+
+	//For if a user goes to a portal
+	GameObject travelUI;
+	Button YesTravelNow;
+	Button NoNotNow;
+
+
 
 
 	/**
@@ -22,8 +32,8 @@ public class UI : MonoBehaviour {
 
 		player = GameObject.Find("Player").GetComponent<Player>();
 		ball = GameObject.Find("ballPower").GetComponent<Power>();
-		quit = GameObject.Find("ExitButton").GetComponent<UnityEngine.UI.Button>();
-		quit.onClick.AddListener(() => OnButtonClicked(quit.name));
+		//quit = GameObject.Find("ExitButton").GetComponent<UnityEngine.UI.Button>();
+		//quit.onClick.AddListener(() => OnButtonClicked(quit.name));
 
 	}
 
@@ -42,6 +52,26 @@ public class UI : MonoBehaviour {
 		player.addPowerToList(ball);
 
 	}
+
+	/**
+    	Loads the UI for if a user runs into a portal, wanting to travel
+
+	*/
+	public void TravelUI()
+	{
+		travelUI = Instantiate(Resources.Load("travelUI") as GameObject);
+		YesTravelNow = GameObject.Find("YesTravelNow").GetComponent<UnityEngine.UI.Button>();
+		NoNotNow = GameObject.Find("NoNotNow").GetComponent<UnityEngine.UI.Button>();
+		YesTravelNow.onClick.AddListener(() => OnButtonClicked(YesTravelNow.name)); 
+		NoNotNow.onClick.AddListener(() => OnButtonClicked(NoNotNow.name));
+
+
+	}
+
+
+
+
+
 		
 	/**
     	Performs a set of actions depending on which button was pressed
@@ -51,28 +81,43 @@ public class UI : MonoBehaviour {
 	*/
 	void OnButtonClicked(string name)
 	{
-
 		if(name == "UseNow")
 		{
 			Debug.Log("Transforming into a ball...");
 			ball.ApplyPower();
 			Destroy(powerUI);
 			Destroy(GameObject.Find("ballPower"));
-
 		}
 
-		if (name == "UseLater")
-		{
+
+		switch (name) {
+		case "UseNow":
+
+			break;
+
+		case "UseLater":
 			Debug.Log("Storing the power for later...");
 			Destroy(powerUI);
 			Destroy(GameObject.Find("ballPower"));
-		}
+			break;
 
-		if(name == "ExitButton")
-		{
+		case "Exit":
 			Debug.Log(name);
 			Application.Quit();
+			break;
+
+		case "YesTravelNow":
+			Debug.Log("Traveling to Paint Universe");
+			SceneManager.LoadScene("PaintUniverse", LoadSceneMode.Additive);
+			break;
+		case "NoNotNow":
+			Destroy(travelUI);
+			break;
+		default:
+			Debug.Log("No Action for Button");
+			break;
 		}
+			
 			
 	}
 

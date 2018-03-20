@@ -5,10 +5,12 @@ using UnityEngine;
 public class Power : MonoBehaviour {
 
 	string powerName_;
-	GameObject ball;
+	public GameObject ball;
 	GameObject person;
 	Vector3 position_;
 	int once;
+	GameObject camera1;
+	GameObject camera2;
 
 	/**
     	Initializes Power object, the constructor
@@ -23,6 +25,9 @@ public class Power : MonoBehaviour {
 		ball.SetActive(false);
 		person = GameObject.Find("ThirdPersonController");
 		person.SetActive(true);
+		camera1 = GameObject.Find("FreeLookCameraRig");
+		camera2 = GameObject.Find("FreeLookCameraRig2");
+		camera2.SetActive(false);
 
 
 	}
@@ -37,16 +42,21 @@ public class Power : MonoBehaviour {
 		{
 			ball.SetActive(true);
 
-			GameObject switchCameraFollow = GameObject.Find("Main Camera").GetComponent<CameraFollow>().player;
-			Debug.Log(switchCameraFollow.name);
-			switchCameraFollow = ball;
-			Debug.Log(switchCameraFollow.name);
+			ball.transform.position = person.transform.position;
+
+			camera2.SetActive(true);
+
+			camera2.transform.position = camera1.transform.position;
+			camera2.transform.rotation = camera1.transform.rotation;
+
+			camera1.SetActive(false);
 
 			person.SetActive(false);
 
 		}
-		
 	}
+		
+	
 
 	/**
     	Waiting for collision on the power 3D object in the game, if another game object (the Player)
