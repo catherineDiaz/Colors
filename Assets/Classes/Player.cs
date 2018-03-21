@@ -7,8 +7,10 @@ public class Player : Singleton<Player> {
     string name_;
     Vector3 position_;
 	GameObject player3DModel;
+	GameObject player;
 	List<Power> powerList_;
 	List<Token> tokenList_;
+	GameObject rollerBall;
 
 	/**
     	Initializes Player object which inherits from the Singleton Class making this object a 
@@ -20,7 +22,10 @@ public class Player : Singleton<Player> {
 		position_ = this.transform.position;
 		powerList_ = new List<Power>();
 		tokenList_ = new List<Token>();
-
+		rollerBall = GameObject.Find("RollerBall");
+		rollerBall.SetActive(false);
+		player = GameObject.Find("ThirdPersonController");
+		player.SetActive(true);
 	}
 
 	/**

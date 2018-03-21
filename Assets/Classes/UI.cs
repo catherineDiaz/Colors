@@ -21,6 +21,8 @@ public class UI : MonoBehaviour {
 	Button YesTravelNow;
 	Button NoNotNow;
 
+	Universe loadObj;
+
 
 
 
@@ -44,6 +46,7 @@ public class UI : MonoBehaviour {
 	*/
 	public void CollectedPower()
 	{
+		
 		powerUI = Instantiate(Resources.Load("powerUI") as GameObject);
 		useNow = GameObject.Find("UseNow").GetComponent<UnityEngine.UI.Button>();
 		useLater = GameObject.Find("UseLater").GetComponent<UnityEngine.UI.Button>();
@@ -81,18 +84,14 @@ public class UI : MonoBehaviour {
 	*/
 	void OnButtonClicked(string name)
 	{
-		if(name == "UseNow")
-		{
-			Debug.Log("Transforming into a ball...");
-			ball.ApplyPower();
-			Destroy(powerUI);
-			Destroy(GameObject.Find("ballPower"));
-		}
 
 
 		switch (name) {
 		case "UseNow":
-
+			Debug.Log("Transforming into a ball...");
+			ball.ApplyPower();
+			Destroy(powerUI);
+			Destroy(GameObject.Find("ballPower"));
 			break;
 
 		case "UseLater":
@@ -108,7 +107,11 @@ public class UI : MonoBehaviour {
 
 		case "YesTravelNow":
 			Debug.Log("Traveling to Paint Universe");
-			SceneManager.LoadScene("PaintUniverse", LoadSceneMode.Additive);
+			Scene sceneToLoad = SceneManager.GetSceneByName("PaintUniverse");
+			SceneManager.LoadScene(sceneToLoad.name, LoadSceneMode.Additive);
+			Destroy(travelUI);
+			loadObj.loadSceneObjects(sceneToLoad);
+
 			break;
 		case "NoNotNow":
 			Destroy(travelUI);
