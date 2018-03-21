@@ -21,13 +21,13 @@ public class Power : MonoBehaviour {
 		powerName_ = this.name;
 		bool now = false;
 		once = 0;
+		camera1 = GameObject.Find("FreeLookCameraRig");
+		camera2 = GameObject.Find("FreeLookCameraRig2");
+		camera2.SetActive(false);
 		ball = GameObject.Find("RollerBall");
 		ball.SetActive(false);
 		person = GameObject.Find("ThirdPersonController");
 		person.SetActive(true);
-		camera1 = GameObject.Find("FreeLookCameraRig");
-		camera2 = GameObject.Find("FreeLookCameraRig2");
-		camera2.SetActive(false);
 
 
 	}

@@ -9,6 +9,9 @@
 
 ## What I Accomplished
 - Created portal in the Home Land to the Paint Universe, user walks up to it to trigger a UI asking if they want to travel to that universe
+- Rough 3D representation of the Paint Universe, which is an obstacle course you navigate as a ball
+- Created Paint material that is used in the Paint Universe
+- 
 
 
 
