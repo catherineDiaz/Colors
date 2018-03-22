@@ -21,6 +21,10 @@ public class UI : MonoBehaviour {
 	Button YesTravelNow;
 	Button NoNotNow;
 
+	//For if a user gets paint token
+	GameObject tokenUIPaint;
+	Button GoingBackHomeFromPaint;
+
 	Universe loadObj;
 
 	GameObject playerObj;
@@ -40,9 +44,6 @@ public class UI : MonoBehaviour {
 		player = GameObject.Find("ThirdPersonController");
 		rollerBall = GameObject.Find("RollerBall");
 		playerObj = GameObject.Find("Player");
-		//ball = GameObject.Find("ballPower").GetComponent<Power>();
-		//quit = GameObject.Find("ExitButton").GetComponent<UnityEngine.UI.Button>();
-		//quit.onClick.AddListener(() => OnButtonClicked(quit.name));
 
 	}
 
@@ -74,13 +75,22 @@ public class UI : MonoBehaviour {
 
 	}
 
-	/**
-    	Performs a set of actions depending on which button was pressed
 
-	@param name - name of button that was clicked
+
+	/**
+    	Loads the UI for if a user collects the token at the end of a level
 
 	*/
+	public void TokenUIPaint()
+	{
+		tokenUIPaint = Instantiate(Resources.Load("tokenUIPaint") as GameObject);
+		//GoingBackHomeFromPaint = GameObject.Find("GoingBackHomeFromPaint").GetComponent<UnityEngine.UI.Button>();
+	}
 
+	/**
+    	If the user clicks the use now button, then apply the ball power to the player
+
+	*/
 	public void useNowClick()
 	{
 		Debug.Log("Transforming into a ball...");
@@ -92,6 +102,11 @@ public class UI : MonoBehaviour {
 		Destroy(GameObject.Find("ballPower"));
 	}
 
+
+	/**
+    	If the user clicks the use later button, then store the power for later
+
+	*/
 	public void userLaterClick()
 	{
 		Debug.Log("Storing the power for later...");
@@ -100,27 +115,59 @@ public class UI : MonoBehaviour {
 		
 	}
 
+
+	/**
+    	Exit the application button
+
+	*/
 	public void ExitClick()
 	{
-		Debug.Log(name);
+		Debug.Log("GoodBye!");
 		Application.Quit();	
 	}
 
+
+	/**
+    	If the user clicks the travel to new universe button then change the scene and move the 
+		player to the new scene with different position
+
+	*/
 	public void YesTravelNowClick()
 	{
 		Debug.Log("Traveling to Paint Universe");
 		SceneManager.LoadScene("PaintUniverse", LoadSceneMode.Single);
-
 		SceneManager.MoveGameObjectToScene(playerObj, SceneManager.GetSceneByName("PaintUniverse"));
 		playerObj.transform.position = new Vector3(-2.5f,1,4);
 		player.transform.position = new Vector3(-2.5f,1,4);
 		Destroy(travelUI);
-		//GameObject.Find("FreeLookCameraRig").GetComponent<UnityStandardAssets.Cameras.FreeLookCam>().Target = player;
 	}
+		
+	/**
+    	For if the user does not want to travel to a new universe at the moment
 
+	*/
 	public void NoNotNowClick()
 	{
 		Destroy(travelUI);
+	}
+
+	/**
+    	For when the user collects a token and needs to go back to the home land
+
+	*/
+	public void GoingBackHomeFromPaintClick()
+	{
+		/*
+		Debug.Log("Going Back Home From Paint");
+		Destroy(tokenUIPaint);
+		SceneManager.LoadScene("Home", LoadSceneMode.Single);
+		playerObj.GetComponent<Player>().ChangeBackToPlayer();
+		SceneManager.MoveGameObjectToScene(playerObj, SceneManager.GetSceneByName("Home"));
+		*/
+
+		Debug.Log("GoodBye!");
+		Application.Quit();	
+
 	}
 
 

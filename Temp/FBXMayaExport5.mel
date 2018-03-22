@@ -1,8 +1,8 @@
 print "Starting maya loading and fbx conversion \n";
 	
-if (`file -q -exists "/Users/catherine1/Documents/ColorsGame/Colors/Assets/3DModels/pipe2.mb"`)
+if (`file -q -exists "/Users/catherine1/Documents/ColorsGame/Colors/Assets/3DModels/paintToken.mb"`)
 {		
-	file -o "/Users/catherine1/Documents/ColorsGame/Colors/Assets/3DModels/pipe2.mb";
+	file -o "/Users/catherine1/Documents/ColorsGame/Colors/Assets/3DModels/paintToken.mb";
 	FBXExportEmbeddedTextures -v false;
 	// FBXExportHardEdges -v true;
 	FBXExportApplyConstantKeyReducer -v false;

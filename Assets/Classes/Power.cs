@@ -49,8 +49,6 @@ public class Power : MonoBehaviour {
 
 		}
 	}
-		
-	
 
 	/**
     	Waiting for collision on the power 3D object in the game, if another game object (the Player)

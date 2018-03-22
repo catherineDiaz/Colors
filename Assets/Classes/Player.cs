@@ -62,9 +62,26 @@ public class Player : Singleton<Player> {
 		}
 
 	}
+
+	/**
+    	For when the player completes the paint level and needs to transform back into a person
+    	instead of a ball
+
+	*/
+
+	public void ChangeBackToPlayer()
+	{
+		rollerBall.SetActive(false);
+		player.SetActive(true);
+		player.transform.position = new Vector3(309.4122f, -52.72276f, 200.4473f);
+	}
+
+
+
 		
 	/**
-    	Keeps track of the player position
+    	Keeps track of the player position, and updates camera follows depending on which form
+    	the player is currently in
 
 	*/
 
