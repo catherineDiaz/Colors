@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class UI : MonoBehaviour {
 
 	// Use this for initialization
 	Button quit;
-	Player player;
-	Power ball;
+
 
 	//For if a user collects a power
 	GameObject powerUI;
@@ -23,8 +23,13 @@ public class UI : MonoBehaviour {
 
 	Universe loadObj;
 
+	GameObject playerObj;
+	GameObject player;
+	GameObject rollerBall;
 
+	Player playerScript;
 
+	Power ball;
 
 	/**
     	Initializes the UI object
@@ -32,8 +37,10 @@ public class UI : MonoBehaviour {
 	*/
 	void Start () {
 
-		player = GameObject.Find("Player").GetComponent<Player>();
-		ball = GameObject.Find("ballPower").GetComponent<Power>();
+		player = GameObject.Find("ThirdPersonController");
+		rollerBall = GameObject.Find("RollerBall");
+		playerObj = GameObject.Find("Player");
+		//ball = GameObject.Find("ballPower").GetComponent<Power>();
 		//quit = GameObject.Find("ExitButton").GetComponent<UnityEngine.UI.Button>();
 		//quit.onClick.AddListener(() => OnButtonClicked(quit.name));
 
@@ -50,9 +57,7 @@ public class UI : MonoBehaviour {
 		powerUI = Instantiate(Resources.Load("powerUI") as GameObject);
 		useNow = GameObject.Find("UseNow").GetComponent<UnityEngine.UI.Button>();
 		useLater = GameObject.Find("UseLater").GetComponent<UnityEngine.UI.Button>();
-		useNow.onClick.AddListener(() => OnButtonClicked(useNow.name)); 
-		useLater.onClick.AddListener(() => OnButtonClicked(useLater.name));
-		player.addPowerToList(ball);
+		//playerScript.addPowerToList(ball);
 
 	}
 
@@ -65,64 +70,59 @@ public class UI : MonoBehaviour {
 		travelUI = Instantiate(Resources.Load("travelUI") as GameObject);
 		YesTravelNow = GameObject.Find("YesTravelNow").GetComponent<UnityEngine.UI.Button>();
 		NoNotNow = GameObject.Find("NoNotNow").GetComponent<UnityEngine.UI.Button>();
-		YesTravelNow.onClick.AddListener(() => OnButtonClicked(YesTravelNow.name)); 
-		NoNotNow.onClick.AddListener(() => OnButtonClicked(NoNotNow.name));
 
 
 	}
 
-
-
-
-
-		
 	/**
     	Performs a set of actions depending on which button was pressed
 
 	@param name - name of button that was clicked
 
 	*/
-	void OnButtonClicked(string name)
+
+	public void useNowClick()
 	{
-
-
-		switch (name) {
-		case "UseNow":
-			Debug.Log("Transforming into a ball...");
-			ball.ApplyPower();
-			Destroy(powerUI);
-			Destroy(GameObject.Find("ballPower"));
-			break;
-
-		case "UseLater":
-			Debug.Log("Storing the power for later...");
-			Destroy(powerUI);
-			Destroy(GameObject.Find("ballPower"));
-			break;
-
-		case "Exit":
-			Debug.Log(name);
-			Application.Quit();
-			break;
-
-		case "YesTravelNow":
-			Debug.Log("Traveling to Paint Universe");
-			Scene sceneToLoad = SceneManager.GetSceneByName("PaintUniverse");
-			SceneManager.LoadScene(sceneToLoad.name, LoadSceneMode.Additive);
-			Destroy(travelUI);
-			loadObj.loadSceneObjects(sceneToLoad);
-
-			break;
-		case "NoNotNow":
-			Destroy(travelUI);
-			break;
-		default:
-			Debug.Log("No Action for Button");
-			break;
-		}
-			
-			
+		Debug.Log("Transforming into a ball...");
+		ball = GameObject.Find("ballPower").GetComponent<Power>();
+		ball.ApplyPower();
+		GameObject clone = GameObject.Find("powerUI(Clone)");
+		Destroy(clone);
+		Debug.Log("Power UI was destroyed");
+		Destroy(GameObject.Find("ballPower"));
 	}
+
+	public void userLaterClick()
+	{
+		Debug.Log("Storing the power for later...");
+		Destroy(powerUI);
+		Destroy(GameObject.Find("ballPower"));
+		
+	}
+
+	public void ExitClick()
+	{
+		Debug.Log(name);
+		Application.Quit();	
+	}
+
+	public void YesTravelNowClick()
+	{
+		Debug.Log("Traveling to Paint Universe");
+		SceneManager.LoadScene("PaintUniverse", LoadSceneMode.Single);
+
+		SceneManager.MoveGameObjectToScene(playerObj, SceneManager.GetSceneByName("PaintUniverse"));
+		playerObj.transform.position = new Vector3(-2.5f,1,4);
+		player.transform.position = new Vector3(-2.5f,1,4);
+		Destroy(travelUI);
+		//GameObject.Find("FreeLookCameraRig").GetComponent<UnityStandardAssets.Cameras.FreeLookCam>().Target = player;
+	}
+
+	public void NoNotNowClick()
+	{
+		Destroy(travelUI);
+	}
+
 
 
 	void Update () {
