@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Power : MonoBehaviour {
 
@@ -12,6 +14,8 @@ public class Power : MonoBehaviour {
 	GameObject camera1;
 	GameObject camera2;
 
+	public bool isUsingPowerBall;
+
 	/**
     	Initializes Power object, the constructor
 
@@ -21,13 +25,9 @@ public class Power : MonoBehaviour {
 		powerName_ = this.name;
 		bool now = false;
 		once = 0;
-		camera1 = GameObject.Find("FreeLookCameraRig");
-		camera2 = GameObject.Find("FreeLookCameraRig2");
-		camera2.SetActive(false);
-		ball = GameObject.Find("RollerBall");
-		ball.SetActive(false);
 		person = GameObject.Find("ThirdPersonController");
 		person.SetActive(true);
+		isUsingPowerBall = false;
 
 
 	}
@@ -40,18 +40,12 @@ public class Power : MonoBehaviour {
 	{
 		if(gameObject.name == "ballPower") // If the object touched was the ball power
 		{
-			ball.SetActive(true);
+			if(SceneManager.GetActiveScene().name == "PaintUniverse")
+			{
+				GameObject.Find("Player").GetComponent<Player>().isUsingRollerPower = true;	
+				
+			}
 
-			ball.transform.position = person.transform.position;
-
-			camera2.SetActive(true);
-
-			camera2.transform.position = camera1.transform.position;
-			camera2.transform.rotation = camera1.transform.rotation;
-
-			camera1.SetActive(false);
-
-			person.SetActive(false);
 
 		}
 	}

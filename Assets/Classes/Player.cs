@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Singleton<Player> {
 
     string name_;
     Vector3 position_;
-	GameObject player3DModel;
-	GameObject player;
+	public GameObject player;
+	public GameObject rollerBall;
 	List<Power> powerList_;
 	List<Token> tokenList_;
-	GameObject rollerBall;
+	GameObject camera1;
+	GameObject camera2;
+	public bool isUsingRollerPower;
 
 	/**
     	Initializes Player object which inherits from the Singleton Class making this object a 
@@ -26,6 +29,7 @@ public class Player : Singleton<Player> {
 		rollerBall.SetActive(false);
 		player = GameObject.Find("ThirdPersonController");
 		player.SetActive(true);
+		isUsingRollerPower = false;
 	}
 
 	/**
@@ -69,6 +73,25 @@ public class Player : Singleton<Player> {
 		position_ = this.transform.position;
 
 
+		if(SceneManager.GetActiveScene().name == "PaintUniverse")
+		{
+			camera1 = GameObject.Find("FreeLookCameraRig");
+
+			if (isUsingRollerPower == true)
+			{
+				
+				rollerBall.SetActive(true);
+
+				rollerBall.transform.position = player.transform.position;
+
+				player.SetActive(false);
+
+				isUsingRollerPower = false;
+			
+				
+			}
+			
+		}
 
 
 		
