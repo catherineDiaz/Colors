@@ -28,10 +28,10 @@
 
 
 ## Screenshots
-![Vid of HW3](/ImagesAndVideos/hw4pic-1.png)
-![Rough Homeland Model](/ImagesAndVideos/hw4pic-2.png))
-![Current Classes](/ImagesAndVideos/hw4pic-3.png))
-![The Ball 3D Model Power](/ImagesAndVideos/hw4pic-4.png))
+![Pic1](/ImagesAndVideos/hw4pic-1.png)
+![Pic2](/ImagesAndVideos/hw4pic-2.png)
+![Pic3](/ImagesAndVideos/hw4pic-3.png))
+![Pic4](/ImagesAndVideos/hw4pic-4.png)
 
 
 
