@@ -20,6 +20,9 @@ public class UI : MonoBehaviour {
 	GameObject travelUI;
 	Button YesTravelNow;
 	Button NoNotNow;
+	GameObject travelWaterColorUI;
+	GameObject tokenUIWaterColor;
+
 
 	//For if a user gets paint token
 	GameObject tokenUIPaint;
@@ -74,6 +77,15 @@ public class UI : MonoBehaviour {
 
 
 	}
+	/**
+    	Loads the UI for if a user runs into a portal, wanting to travel
+
+	*/
+	public void TravelWaterColorUI()
+	{
+		travelWaterColorUI = Instantiate(Resources.Load("travelWaterColorUI") as GameObject);
+
+	}
 
 
 
@@ -85,6 +97,10 @@ public class UI : MonoBehaviour {
 	{
 		tokenUIPaint = Instantiate(Resources.Load("tokenUIPaint") as GameObject);
 		//GoingBackHomeFromPaint = GameObject.Find("GoingBackHomeFromPaint").GetComponent<UnityEngine.UI.Button>();
+	}
+	public void TokenUIWaterColor()
+	{
+		tokenUIWaterColor = Instantiate(Resources.Load("tokenUIWaterColor") as GameObject);
 	}
 
 	/**
@@ -143,6 +159,23 @@ public class UI : MonoBehaviour {
 		Destroy(travelUI);
 	}
 
+
+	/**
+    	If the user clicks the travel to new universe button then change the scene and move the 
+		player to the new scene with different position
+
+	*/
+	public void YesTravelNowToWaterColorClick()
+	{
+		Debug.Log("Traveling to WaterColor Universe");
+		SceneManager.LoadScene("WaterColorUniverse", LoadSceneMode.Single);
+		SceneManager.MoveGameObjectToScene(playerObj, SceneManager.GetSceneByName("WaterColorUniverse"));
+		DontDestroyOnLoad(playerObj);
+		playerObj.transform.position = new Vector3(33.3f,3.9f,-56.38f);
+		player.transform.position = new Vector3(33.3f,3.9f,-56.38f);
+		Destroy(travelWaterColorUI);
+	}
+
 			
 	/**
     	For if the user does not want to travel to a new universe at the moment
@@ -154,7 +187,16 @@ public class UI : MonoBehaviour {
 	}
 
 	/**
-    	For when the user collects a token and needs to go back to the home land
+    	For if the user does not want to travel to a new universe at the moment
+
+	*/
+	public void NoNotNowWaterColorClick()
+	{
+		Destroy(travelWaterColorUI);
+	}
+
+	/**
+    	For when the user collects a token and needs to go back to the home land from Paint
 
 	*/
 	public void GoingBackHomeFromPaintClick()
@@ -162,12 +204,33 @@ public class UI : MonoBehaviour {
 		
 		Debug.Log("Going Back Home From Paint");
 		Destroy(tokenUIPaint);
-
 		SceneManager.LoadScene("Home", LoadSceneMode.Single);
 		SceneManager.MoveGameObjectToScene(playerObj, SceneManager.GetSceneByName("Home"));
 		DontDestroyOnLoad(playerObj);
 		playerObj.GetComponent<Player>().ChangeBackToPlayer();
-		playerObj.transform.position = new Vector3(309.4f,20f,236.7f);
+		playerObj.transform.position = new Vector3(309.4f,20f,210.4f);
+
+
+	}
+
+	/**
+    	For when the user collects a token and needs to go back to the home land from WaterColor
+
+	*/
+	public void GoingBackHomeFromWaterColorClick()
+	{
+		/*
+		Debug.Log("Going Back Home From Water Color");
+		Destroy(tokenUIWaterColor);
+		SceneManager.LoadScene("Home", LoadSceneMode.Single);
+		SceneManager.MoveGameObjectToScene(playerObj, SceneManager.GetSceneByName("Home"));
+		DontDestroyOnLoad(playerObj);
+		playerObj.GetComponent<Player>().ChangeBackToPlayer();
+		playerObj.transform.position = new Vector3(309.4f,20f,210.4f);
+		*/
+		Debug.Log("GoodBye!");
+		Application.Quit();
+
 
 
 	}

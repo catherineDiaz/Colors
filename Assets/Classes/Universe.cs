@@ -7,8 +7,9 @@ public class Universe : MonoBehaviour {
 
 	// Use this for initialization
 
-	public string sceneName;
-	private int once;
+	//public string sceneName;
+	private int paintOnce;
+	private int waterColorOnce;
 	private GameObject player;
 
 
@@ -22,12 +23,17 @@ public class Universe : MonoBehaviour {
 
 	public void loadSceneObjects(Scene scene)
 	{
-		if(sceneName == "PaintUniverse")
+		if(scene.name == "PaintUniverse")
 		{
 			SceneManager.MoveGameObjectToScene(player, scene);
 			player.transform.position = new Vector3(-31.6f, 0.26f, 45);
-			//player.transform.rotation = new Quaternion.Euler(0,141.95f,0);
-			//Resources.load course
+
+		}
+		if(scene.name == "WaterColorUniverse")
+		{
+			SceneManager.MoveGameObjectToScene(player, scene);
+			player.transform.position = new Vector3(-31.6f, 0.26f, 45);
+
 		}
 		
 	}
@@ -35,15 +41,23 @@ public class Universe : MonoBehaviour {
 
 	void OnCollisionEnter (Collision col)
 	{
-		if (gameObject.name == "PortalToPaint" && once == 0) 
+		if (gameObject.name == "PortalToPaint" && paintOnce == 0) 
 		{
-			once = 1;
-			Debug.Log("Portal Has Been Touched");
+			paintOnce = 1;
+			Debug.Log("Paint Portal Has Been Touched");
 			UI travelUI = GameObject.Find("UIController").GetComponent<UI>();
 			travelUI.TravelUI();
 
 		}
 
+		if (gameObject.name == "PortalToWaterColor" && waterColorOnce == 0) 
+		{
+			waterColorOnce = 1;
+			Debug.Log("Water Color Portal Has Been Touched");
+			UI travelWaterColorUI = GameObject.Find("UIController").GetComponent<UI>();
+			travelWaterColorUI.TravelWaterColorUI();
+
+		}
 	}
 
 

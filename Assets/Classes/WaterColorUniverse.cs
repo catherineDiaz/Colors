@@ -25,6 +25,18 @@ public class WaterColorUniverse : MonoBehaviour {
 
 	}
 
+	void OnCollisionEnter (Collision col)
+	{
+		if (gameObject.name == "WaterColorToken" && once == 0) 
+		{
+			once = 1;
+			Debug.Log("Water Color Token Touched");
+			UI tokenUIWaterColor = GameObject.Find("UIController").GetComponent<UI>();
+			tokenUIWaterColor.TokenUIWaterColor();
+
+		}
+
+	}
 
 
 	public void xRayVision()
@@ -34,6 +46,15 @@ public class WaterColorUniverse : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+		playerFollow.transform.position = personController.transform.position;
+
+		if(playerFollow.transform.position.y < -200)
+		{
+			UI fallUI = GameObject.Find("UIController").GetComponent<UI>();
+			player.GetComponent<Player>().ChangeBackToPlayer();
+			fallUI.YesTravelNowToWaterColorClick();
+		}
 		
 	}
 }

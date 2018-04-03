@@ -114,7 +114,7 @@ public class Player : Singleton<Player> {
 			}
 			
 		}
-		Debug.Log(player.transform.position);
+		//Debug.Log(player.transform.position);
 
 		if(SceneManager.GetActiveScene().name == "Home")
 		{
