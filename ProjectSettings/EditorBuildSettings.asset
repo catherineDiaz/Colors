@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Home.unity
   - enabled: 1
     path: Assets/Scenes/PaintUniverse.unity
+  - enabled: 1
+    path: Assets/Scenes/WaterColorUniverse.unity

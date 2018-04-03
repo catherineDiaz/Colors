@@ -10,7 +10,9 @@ public class PaintUniverse : MonoBehaviour {
 	GameObject ballFollow;
 	GameObject rollerBall;
 	GameObject paintToken;
+	GameObject player;
 	int once = 0;
+
 
 
 
@@ -25,6 +27,7 @@ public class PaintUniverse : MonoBehaviour {
 		ballFollow = GameObject.Find("BallFollow");
 		personController = GameObject.Find("ThirdPersonController");
 		paintToken = GameObject.Find("paintToken");
+		player = GameObject.Find("Player");
 
 		
 	}
@@ -68,6 +71,15 @@ public class PaintUniverse : MonoBehaviour {
 			playerFollow.transform.position = personController.transform.position;
 			
 		}
+
+		if(playerFollow.transform.position.y < -40)
+		{
+			UI fallUI = GameObject.Find("UIController").GetComponent<UI>();
+			player.GetComponent<Player>().ChangeBackToPlayer();
+			fallUI.YesTravelNowClick();
+		}
+
+
 			
 		
 	}

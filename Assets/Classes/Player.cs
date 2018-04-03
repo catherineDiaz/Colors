@@ -14,6 +14,10 @@ public class Player : Singleton<Player> {
 	GameObject camera1;
 	GameObject camera2;
 	public bool isUsingRollerPower;
+	GameObject playerFollow;
+	GameObject playerObj;
+	int count;
+	GameObject newFollow;
 
 	/**
     	Initializes Player object which inherits from the Singleton Class making this object a 
@@ -27,9 +31,12 @@ public class Player : Singleton<Player> {
 		tokenList_ = new List<Token>();
 		rollerBall = GameObject.Find("RollerBall");
 		rollerBall.SetActive(false);
+		playerObj = GameObject.Find("Player");
 		player = GameObject.Find("ThirdPersonController");
 		player.SetActive(true);
 		isUsingRollerPower = false;
+		playerFollow = GameObject.Find("PlayerFollow");
+		count = 0;
 	}
 
 	/**
@@ -73,11 +80,9 @@ public class Player : Singleton<Player> {
 	{
 		rollerBall.SetActive(false);
 		player.SetActive(true);
-		player.transform.position = new Vector3(309.4122f, -52.72276f, 200.4473f);
+		//player.transform.position = new Vector3(0, 0, 0);
+
 	}
-
-
-
 		
 	/**
     	Keeps track of the player position, and updates camera follows depending on which form
@@ -108,6 +113,17 @@ public class Player : Singleton<Player> {
 				
 			}
 			
+		}
+		Debug.Log(player.transform.position);
+
+		if(SceneManager.GetActiveScene().name == "Home")
+		{
+			if(player != null)
+			{
+				playerFollow = GameObject.Find("PlayerFollow");
+				playerFollow.transform.position = player.transform.position;	
+			}
+
 		}
 
 
