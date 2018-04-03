@@ -55,6 +55,7 @@
      <Compile Include="Assets\Classes\Token.cs" />
      <Compile Include="Assets\Classes\UI.cs" />
      <Compile Include="Assets\Classes\Universe.cs" />
+     <Compile Include="Assets\Classes\WaterColorUniverse.cs" />
      <None Include="Assets\StreamingAssets\build_info.txt" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />

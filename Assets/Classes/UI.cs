@@ -137,11 +137,13 @@ public class UI : MonoBehaviour {
 		Debug.Log("Traveling to Paint Universe");
 		SceneManager.LoadScene("PaintUniverse", LoadSceneMode.Single);
 		SceneManager.MoveGameObjectToScene(playerObj, SceneManager.GetSceneByName("PaintUniverse"));
+		DontDestroyOnLoad(playerObj);
 		playerObj.transform.position = new Vector3(-2.5f,1,4);
 		player.transform.position = new Vector3(-2.5f,1,4);
 		Destroy(travelUI);
 	}
-		
+
+			
 	/**
     	For if the user does not want to travel to a new universe at the moment
 
@@ -157,16 +159,16 @@ public class UI : MonoBehaviour {
 	*/
 	public void GoingBackHomeFromPaintClick()
 	{
-		/*
+		
 		Debug.Log("Going Back Home From Paint");
 		Destroy(tokenUIPaint);
-		SceneManager.LoadScene("Home", LoadSceneMode.Single);
-		playerObj.GetComponent<Player>().ChangeBackToPlayer();
-		SceneManager.MoveGameObjectToScene(playerObj, SceneManager.GetSceneByName("Home"));
-		*/
 
-		Debug.Log("GoodBye!");
-		Application.Quit();	
+		SceneManager.LoadScene("Home", LoadSceneMode.Single);
+		SceneManager.MoveGameObjectToScene(playerObj, SceneManager.GetSceneByName("Home"));
+		DontDestroyOnLoad(playerObj);
+		playerObj.GetComponent<Player>().ChangeBackToPlayer();
+		playerObj.transform.position = new Vector3(309.4f,20f,236.7f);
+
 
 	}
 
