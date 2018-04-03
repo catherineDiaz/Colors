@@ -1,7 +1,3 @@
-This skybox has been created by 'The Mighty Pete'. He can be reached
-at the following WEB site:
-
-http://www.petesoasis.com
-
-The author grants you the right to freely use this sky box in your projects
-and distribute it under the GNU General Public License version 2.
+version https://git-lfs.github.com/spec/v1
+oid sha256:027a646bf82f8703f866e58d4da45c67851f1d7fc129f722825e5c267b300293
+size 273
